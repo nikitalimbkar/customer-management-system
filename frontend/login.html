@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Login - Customer Management System</title>
+    <title>Customer Management - Login</title>
 
     <style>
         * {
@@ -20,358 +19,253 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #e8f0ff, #f7f9fc);
+            background: #f4f7fb;
         }
 
         .login-container {
-            width: 400px;
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+        }
+
+        .login-box {
             background: white;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
-        }
-
-        .logo {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .logo-icon {
-            width: 65px;
-            height: 65px;
-            margin: auto;
-            border-radius: 50%;
-            background: #2563eb;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
             text-align: center;
-            margin-top: 15px;
-            color: #1e293b;
-            font-size: 25px;
+            margin-bottom: 10px;
+            color: #1f2937;
         }
 
         .subtitle {
             text-align: center;
-            color: #64748b;
-            margin-top: 8px;
-            margin-bottom: 30px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
+            color: #6b7280;
+            margin-bottom: 25px;
         }
 
         label {
             display: block;
-            margin-bottom: 8px;
-            color: #334155;
-            font-weight: 600;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #374151;
         }
 
         input {
             width: 100%;
-            padding: 13px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 7px;
+            margin-bottom: 18px;
             font-size: 15px;
-            outline: none;
         }
 
         input:focus {
+            outline: none;
             border-color: #2563eb;
         }
 
-        .password-box {
-            position: relative;
-        }
-
-        .password-box input {
-            padding-right: 70px;
-        }
-
-        .show-password {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            border: none;
-            background: transparent;
-            color: #2563eb;
-            cursor: pointer;
-        }
-
-        .login-btn {
+        button {
             width: 100%;
-            padding: 14px;
+            padding: 12px;
             border: none;
-            border-radius: 8px;
+            border-radius: 7px;
             background: #2563eb;
             color: white;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            margin-top: 5px;
         }
 
-        .login-btn:hover {
+        button:hover {
             background: #1d4ed8;
         }
 
-        .login-btn:disabled {
-            background: #94a3b8;
-            cursor: not-allowed;
-        }
-
         .error {
-            display: none;
-            background: #fee2e2;
-            color: #b91c1c;
-            padding: 11px;
-            border-radius: 8px;
-            margin-bottom: 18px;
+            color: #dc2626;
             text-align: center;
+            margin-top: 15px;
+            display: none;
         }
 
-        .footer {
+        .loading {
+            display: none;
             text-align: center;
-            margin-top: 25px;
-            color: #94a3b8;
-            font-size: 13px;
+            margin-top: 15px;
+            color: #2563eb;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="login-container">
+<div class="login-container">
 
-        <div class="logo">
-            <div class="logo-icon">👤</div>
+    <div class="login-box">
 
-            <h1>Customer Management</h1>
+        <h1>Customer Management</h1>
 
-            <p class="subtitle">
-                Login to continue
-            </p>
-        </div>
-
-        <div id="errorMessage" class="error"></div>
+        <p class="subtitle">
+            Login to continue
+        </p>
 
         <form id="loginForm">
 
-            <div class="form-group">
+            <label for="username">
+                Username
+            </label>
 
-                <label for="username">
-                    Username
-                </label>
+            <input
+                type="text"
+                id="username"
+                placeholder="Enter username"
+                required
+            >
 
-                <input
-                    type="text"
-                    id="username"
-                    placeholder="Enter username"
-                    required
-                    autocomplete="username"
-                >
+            <label for="password">
+                Password
+            </label>
 
-            </div>
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter password"
+                required
+            >
 
-            <div class="form-group">
-
-                <label for="password">
-                    Password
-                </label>
-
-                <div class="password-box">
-
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder="Enter password"
-                        required
-                        autocomplete="current-password"
-                    >
-
-                    <button
-                        type="button"
-                        class="show-password"
-                        onclick="togglePassword()">
-                        Show
-                    </button>
-
-                </div>
-
-            </div>
-
-            <button
-                type="submit"
-                class="login-btn"
-                id="loginButton">
-
+            <button type="submit">
                 Login
-
             </button>
 
         </form>
 
-        <div class="footer">
-            Customer Management System
+        <div id="loading" class="loading">
+            Logging in...
         </div>
 
+        <div id="errorMessage" class="error"></div>
+
     </div>
+
+</div>
 
 
 <script>
 
-const API_BASE_URL = "https://customer-management-system-gful.onrender.com/api";
+    // ==========================================
+    // BACKEND API URL
+    // ==========================================
 
-const loginForm =
-    document.getElementById("loginForm");
-
-const errorMessage =
-    document.getElementById("errorMessage");
-
-const loginButton =
-    document.getElementById("loginButton");
+    const API_BASE_URL =
+        "https://customer-management-system-gful.onrender.com/api";
 
 
-// CHECK IF ALREADY LOGGED IN
+    // ==========================================
+    // LOGIN
+    // ==========================================
 
-const existingToken =
-    localStorage.getItem("authToken");
+    document
+        .getElementById("loginForm")
+        .addEventListener("submit", async function(event) {
 
-if (existingToken) {
+            event.preventDefault();
 
-    window.location.href = "index.html";
+            const username =
+                document.getElementById("username").value.trim();
 
-}
+            const password =
+                document.getElementById("password").value;
 
+            const errorMessage =
+                document.getElementById("errorMessage");
 
-// LOGIN
+            const loading =
+                document.getElementById("loading");
 
-loginForm.addEventListener(
-    "submit",
-    async function(event) {
+            errorMessage.style.display = "none";
+            errorMessage.textContent = "";
 
-        event.preventDefault();
+            loading.style.display = "block";
 
-        errorMessage.style.display = "none";
+            try {
 
-        const username =
-            document.getElementById("username").value.trim();
+                // IMPORTANT:
+                // Use API_BASE_URL here
+                const response = await fetch(
+                    `${API_BASE_URL}/login`,
+                    {
+                        method: "POST",
 
-        const password =
-            document.getElementById("password").value;
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
 
-        loginButton.disabled = true;
-
-        loginButton.textContent = "Logging in...";
-
-        try {
-
-            const response =
-    await fetch(`${API_BASE_URL}/login`, {
-
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-
-                    body: JSON.stringify({
-                        username,
-                        password
-                    })
-
-                });
-
-
-            const data =
-                await response.json();
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    data.error ||
-                    "Invalid username or password"
+                        body: JSON.stringify({
+                            username: username,
+                            password: password
+                        })
+                    }
                 );
+
+
+                // Try to read JSON
+                const data = await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.message || "Login failed"
+                    );
+
+                }
+
+
+                // ==========================================
+                // SAVE JWT TOKEN
+                // ==========================================
+
+                localStorage.setItem(
+                    "token",
+                    data.token
+                );
+
+
+                // Save username
+                localStorage.setItem(
+                    "username",
+                    username
+                );
+
+
+                // ==========================================
+                // REDIRECT TO DASHBOARD
+                // ==========================================
+
+                window.location.href = "index.html";
+
+            }
+            catch (error) {
+
+                console.error("Login error:", error);
+
+                errorMessage.textContent =
+                    error.message ||
+                    "Unable to login. Please try again.";
+
+                errorMessage.style.display = "block";
+
+            }
+            finally {
+
+                loading.style.display = "none";
 
             }
 
-
-            // SAVE TOKEN
-
-            localStorage.setItem(
-                "authToken",
-                data.token
-            );
-
-
-            localStorage.setItem(
-                "username",
-                data.user.username
-            );
-
-
-            // OPEN DASHBOARD
-
-            window.location.href =
-                "index.html";
-
-
-        } catch (error) {
-
-            errorMessage.textContent =
-                error.message;
-
-            errorMessage.style.display =
-                "block";
-
-        } finally {
-
-            loginButton.disabled = false;
-
-            loginButton.textContent =
-                "Login";
-
-        }
-
-    }
-);
-
-
-// SHOW / HIDE PASSWORD
-
-function togglePassword() {
-
-    const passwordInput =
-        document.getElementById("password");
-
-    const button =
-        document.querySelector(".show-password");
-
-
-    if (passwordInput.type === "password") {
-
-        passwordInput.type = "text";
-
-        button.textContent = "Hide";
-
-    } else {
-
-        passwordInput.type = "password";
-
-        button.textContent = "Show";
-
-    }
-
-}
+        });
 
 </script>
 
