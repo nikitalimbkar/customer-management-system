@@ -2,228 +2,478 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Customer Management System</title>
 
-
     <style>
-
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            box-sizing: border-box;
         }
 
         body {
-            background: #f4f7fb;
-            color: #1f2937;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #222;
         }
 
+        button {
+            font-family: inherit;
+        }
 
-        /* ==============================
-           HEADER
-        ============================== */
+        .hidden {
+            display: none !important;
+        }
 
-        header {
-            background: #2563eb;
+        /* HEADER */
+
+        .header {
+            min-height: 70px;
+            background: #0757a6;
             color: white;
-            padding: 15px 25px;
 
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
 
-            flex-wrap: wrap;
-            gap: 10px;
+            padding: 10px 30px;
         }
 
-        header h1 {
-            font-size: 22px;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-box {
+            width: 42px;
+            height: 42px;
+
+            background: white;
+            color: #0757a6;
+
+            border-radius: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-weight: bold;
+        }
+
+        .logo h2 {
+            font-size: 20px;
         }
 
         .header-right {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
-        #usernameDisplay {
+        .username-display {
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .user {
+            width: 40px;
+            height: 40px;
+
+            border-radius: 50%;
+
+            background: white;
+            color: #0757a6;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
             font-weight: bold;
         }
 
         .logout-btn {
-            background: white;
-            color: #2563eb;
             border: none;
-            padding: 8px 15px;
-            border-radius: 6px;
+            background: white;
+            color: #0757a6;
+
+            padding: 9px 14px;
+
+            border-radius: 7px;
+
             cursor: pointer;
+
             font-weight: bold;
         }
 
         .logout-btn:hover {
-            background: #e5e7eb;
+            background: #e7f1ff;
         }
 
+        /* NAVIGATION */
 
-        /* ==============================
-           MAIN
-        ============================== */
+        .navbar {
+            background: white;
 
-        .container {
-            width: 95%;
-            max-width: 1400px;
-            margin: 25px auto;
+            padding: 10px 30px;
+
+            display: flex;
+            gap: 10px;
+
+            border-bottom: 1px solid #ddd;
         }
 
+        .nav-btn {
+            border: none;
+            background: transparent;
 
-        /* ==============================
-           DASHBOARD CARDS
-        ============================== */
+            padding: 12px 20px;
 
-        .dashboard {
-            display: grid;
-            grid-template-columns:
-                repeat(auto-fit, minmax(180px, 1fr));
+            border-radius: 8px;
 
-            gap: 20px;
+            cursor: pointer;
+
+            font-size: 15px;
+        }
+
+        .nav-btn:hover {
+            background: #e7f1ff;
+            color: #0757a6;
+        }
+
+        .nav-btn.active {
+            background: #0757a6;
+            color: white;
+        }
+
+        /* MAIN */
+
+        main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 30px 20px;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .active-page {
+            display: block;
+        }
+
+        /* PAGE TITLE */
+
+        .page-title {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
             margin-bottom: 25px;
         }
 
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-
-            box-shadow:
-                0 3px 10px rgba(0, 0, 0, 0.08);
-
-            text-align: center;
-        }
-
-        .card h3 {
-            color: #6b7280;
-            font-size: 15px;
-            margin-bottom: 10px;
-        }
-
-        .card p {
+        .page-title h1 {
             font-size: 28px;
-            font-weight: bold;
-            color: #2563eb;
         }
 
-
-        /* ==============================
-           ACTION BAR
-        ============================== */
-
-        .actions {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-
-            margin-bottom: 20px;
+        .page-title p {
+            color: #777;
+            margin-top: 5px;
         }
 
-        .actions input,
-        .actions select {
+        /* BUTTONS */
 
-            padding: 11px;
-
-            border: 1px solid #d1d5db;
-
-            border-radius: 6px;
-
-            min-width: 180px;
-        }
-
-        .actions button {
-            padding: 11px 18px;
-
+        .primary-btn {
             border: none;
 
-            border-radius: 6px;
-
-            background: #2563eb;
-
+            background: #0757a6;
             color: white;
 
-            font-weight: bold;
+            padding: 12px 20px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-size: 15px;
+        }
+
+        .primary-btn:hover {
+            background: #064986;
+        }
+
+        .secondary-btn {
+            border: none;
+
+            background: #e9ecef;
+
+            padding: 12px 20px;
+
+            border-radius: 8px;
 
             cursor: pointer;
         }
 
-        .actions button:hover {
-            background: #1d4ed8;
+        .secondary-btn:hover {
+            background: #dfe3e7;
         }
 
+        .danger-btn {
+            border: 1px solid #d32f2f;
 
-        /* ==============================
-           CUSTOMER TABLE
-        ============================== */
-
-        .table-container {
             background: white;
+            color: #d32f2f;
 
-            border-radius: 10px;
+            padding: 12px 20px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+        }
+
+        .danger-btn:hover {
+            background: #ffecec;
+        }
+
+        /* DASHBOARD */
+
+        .stats {
+            display: grid;
+
+            grid-template-columns: repeat(5, 1fr);
+
+            gap: 15px;
+
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
 
             padding: 20px;
 
-            overflow-x: auto;
+            border-radius: 12px;
 
             box-shadow:
-                0 3px 10px rgba(0, 0, 0, 0.08);
+                0 2px 8px rgba(0, 0, 0, 0.05);
         }
 
-        table {
+        .stat-card p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .stat-card h2 {
+            margin-top: 8px;
+
+            font-size: 28px;
+
+            color: #0757a6;
+        }
+
+        .section-box {
+            background: white;
+
+            padding: 20px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-header {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 15px;
+        }
+
+        /* SEARCH */
+
+        .search-box {
+            background: white;
+
+            border: 1px solid #ddd;
+
+            border-radius: 10px;
+
+            padding: 0 15px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 15px;
+        }
+
+        .search-box input {
             width: 100%;
 
-            border-collapse: collapse;
+            border: none;
+            outline: none;
 
-            min-width: 850px;
+            padding: 15px;
+
+            font-size: 15px;
         }
 
-        th,
-        td {
+        /* FILTERS */
 
-            padding: 12px;
+        .filters {
+            display: flex;
 
-            border-bottom: 1px solid #e5e7eb;
+            gap: 10px;
 
-            text-align: left;
+            margin-bottom: 20px;
+
+            flex-wrap: wrap;
         }
 
-        th {
-            background: #f3f4f6;
+        .filter-btn {
+            border: 1px solid #ddd;
+
+            background: white;
+
+            padding: 9px 18px;
+
+            border-radius: 20px;
+
+            cursor: pointer;
         }
 
-        tr:hover {
-            background: #f9fafb;
+        .filter-btn.active {
+            background: #0757a6;
+
+            color: white;
+
+            border-color: #0757a6;
         }
 
+        /* CITY FILTER */
 
-        /* ==============================
-           STATUS
-        ============================== */
+        .city-filter-box {
+            display: flex;
+            gap: 10px;
+
+            align-items: center;
+
+            margin-bottom: 15px;
+        }
+
+        .city-filter-box label {
+            font-weight: bold;
+        }
+
+        .city-filter-box select {
+            padding: 10px 14px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 8px;
+
+            background: white;
+
+            min-width: 220px;
+
+            outline: none;
+        }
+
+        /* CUSTOMER CARD */
+
+        .customer-list {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 10px;
+        }
+
+        .customer-card {
+            background: white;
+
+            padding: 18px;
+
+            border-radius: 12px;
+
+            border: 1px solid #eee;
+
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .customer-card:hover {
+            border-color: #0757a6;
+
+            transform: translateY(-2px);
+        }
+
+        .customer-left {
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+
+            border-radius: 50%;
+
+            background: #e7f1ff;
+            color: #0757a6;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-weight: bold;
+
+            font-size: 20px;
+        }
+
+        .customer-name {
+            font-size: 17px;
+
+            font-weight: bold;
+        }
+
+        .customer-info {
+            color: #777;
+
+            font-size: 13px;
+
+            margin-top: 5px;
+        }
+
+        .customer-right {
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+        /* STATUS */
 
         .status {
-
-            display: inline-block;
-
-            padding: 5px 10px;
+            padding: 6px 12px;
 
             border-radius: 20px;
 
@@ -232,735 +482,702 @@
             font-weight: bold;
         }
 
-        .status.NEW {
-            background: #dbeafe;
-            color: #1d4ed8;
+        .status-NEW {
+            background: #e1f7e7;
+            color: #16823b;
         }
 
-        .status.RENEW {
-            background: #dcfce7;
-            color: #15803d;
+        .status-RENEW {
+            background: #e2efff;
+            color: #0757a6;
         }
 
-        .status.PENDING {
-            background: #fef3c7;
-            color: #b45309;
+        .status-PENDING {
+            background: #fff0d1;
+            color: #a86800;
         }
 
-        .status.REJECTED {
-            background: #fee2e2;
-            color: #b91c1c;
+        .status-REJECTED {
+            background: #ffe2e2;
+            color: #c62828;
         }
 
+        /* PROFILE */
 
-        /* ==============================
-           BUTTONS
-        ============================== */
+        .profile-container {
+            background: white;
 
-        .btn {
+            border-radius: 15px;
 
+            overflow: hidden;
+
+            box-shadow:
+                0 2px 10px rgba(0, 0, 0, 0.06);
+        }
+
+        .profile-header {
+            background: #0757a6;
+
+            color: white;
+
+            padding: 30px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+
+            border-radius: 50%;
+
+            background: white;
+            color: #0757a6;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 30px;
+
+            font-weight: bold;
+        }
+
+        .profile-body {
+            padding: 25px;
+        }
+
+        .detail-section {
+            margin-bottom: 30px;
+        }
+
+        .detail-section h3 {
+            color: #0757a6;
+
+            margin-bottom: 15px;
+        }
+
+        .detail-grid {
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 15px;
+        }
+
+        .detail-item {
+            background: #f7f8fa;
+
+            padding: 15px;
+
+            border-radius: 8px;
+        }
+
+        .detail-item label {
+            display: block;
+
+            color: #777;
+
+            font-size: 13px;
+
+            margin-bottom: 6px;
+        }
+
+        .detail-item strong {
+            font-size: 15px;
+
+            word-break: break-word;
+        }
+
+        /* DOCUMENTS */
+
+        .document {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            border: 1px solid #ddd;
+
+            padding: 15px;
+
+            border-radius: 8px;
+
+            margin-bottom: 10px;
+        }
+
+        .document-name {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            word-break: break-word;
+        }
+
+        .document-actions {
+            display: flex;
+
+            gap: 10px;
+        }
+
+        .document button {
             border: none;
 
-            padding: 7px 11px;
+            background: transparent;
 
-            border-radius: 5px;
+            color: #0757a6;
 
             cursor: pointer;
-
-            margin-right: 4px;
         }
 
-        .view-btn {
-            background: #2563eb;
-            color: white;
+        .document button:hover {
+            text-decoration: underline;
         }
 
-        .edit-btn {
-            background: #f59e0b;
-            color: white;
+        .upload-area {
+            margin-top: 15px;
+
+            padding: 15px;
+
+            background: #f7f8fa;
+
+            border-radius: 8px;
         }
 
-        .delete-btn {
-            background: #dc2626;
-            color: white;
+        .upload-area input {
+            margin-bottom: 10px;
         }
 
+        /* HISTORY */
 
-        /* ==============================
-           MODAL
-        ============================== */
+        .history-item {
+            border-left: 3px solid #0757a6;
+
+            padding: 10px 15px;
+
+            margin-bottom: 12px;
+
+            background: #f7f8fa;
+
+            border-radius: 5px;
+        }
+
+        .history-date {
+            font-size: 12px;
+
+            color: #777;
+
+            margin-bottom: 5px;
+        }
+
+        .history-remark {
+            color: #666;
+
+            margin-top: 5px;
+
+            font-size: 13px;
+        }
+
+        /* REPORT */
+
+        .report-box {
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 20px;
+        }
+
+        .report-row {
+            display: flex;
+
+            justify-content: space-between;
+
+            padding: 18px;
+
+            border-bottom: 1px solid #eee;
+        }
+
+        /* MODAL */
 
         .modal {
-
             display: none;
 
             position: fixed;
 
-            top: 0;
-            left: 0;
-
-            width: 100%;
-            height: 100%;
+            inset: 0;
 
             background: rgba(0, 0, 0, 0.5);
 
-            justify-content: center;
-            align-items: center;
+            z-index: 1000;
 
             padding: 20px;
 
-            z-index: 1000;
+            overflow-y: auto;
         }
 
         .modal-content {
-
             background: white;
 
-            width: 100%;
+            max-width: 600px;
 
-            max-width: 700px;
-
-            max-height: 90vh;
-
-            overflow-y: auto;
-
-            border-radius: 10px;
+            margin: 30px auto;
 
             padding: 25px;
 
-            position: relative;
+            border-radius: 15px;
         }
 
-        .close {
+        .modal-header {
+            display: flex;
 
-            position: absolute;
+            justify-content: space-between;
 
-            right: 20px;
-            top: 15px;
+            margin-bottom: 20px;
+        }
 
-            font-size: 25px;
+        .modal-header button {
+            border: none;
+
+            background: transparent;
+
+            font-size: 20px;
 
             cursor: pointer;
-
-            color: #6b7280;
         }
 
-        .close:hover {
-            color: #111827;
-        }
-
-
-        /* ==============================
-           FORM
-        ============================== */
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-
+        form label {
             display: block;
+
+            margin-top: 15px;
 
             margin-bottom: 6px;
 
             font-weight: bold;
         }
 
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-
+        form input,
+        form textarea,
+        form select {
             width: 100%;
-
-            padding: 10px;
-
-            border: 1px solid #d1d5db;
-
-            border-radius: 6px;
-        }
-
-        .form-group textarea {
-            min-height: 80px;
-            resize: vertical;
-        }
-
-        .form-buttons {
-
-            display: flex;
-
-            gap: 10px;
-
-            margin-top: 20px;
-        }
-
-        .primary-btn {
-
-            background: #2563eb;
-
-            color: white;
-
-            border: none;
-
-            padding: 11px 20px;
-
-            border-radius: 6px;
-
-            cursor: pointer;
-        }
-
-        .secondary-btn {
-
-            background: #6b7280;
-
-            color: white;
-
-            border: none;
-
-            padding: 11px 20px;
-
-            border-radius: 6px;
-
-            cursor: pointer;
-        }
-
-
-        /* ==============================
-           PROFILE
-        ============================== */
-
-        .profile-row {
-
-            display: grid;
-
-            grid-template-columns: 180px 1fr;
-
-            gap: 10px;
-
-            padding: 10px 0;
-
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .profile-label {
-            font-weight: bold;
-        }
-
-
-        /* ==============================
-           DOCUMENTS
-        ============================== */
-
-        .documents {
-
-            margin-top: 20px;
-        }
-
-        .documents h3 {
-            margin-bottom: 10px;
-        }
-
-        .document-item {
-
-            display: flex;
-
-            justify-content: space-between;
-
-            align-items: center;
-
-            gap: 10px;
-
-            padding: 10px;
-
-            border: 1px solid #e5e7eb;
-
-            border-radius: 6px;
-
-            margin-bottom: 8px;
-        }
-
-        .document-item a {
-
-            color: #2563eb;
-
-            text-decoration: none;
-
-            font-weight: bold;
-        }
-
-
-        /* ==============================
-           MESSAGE
-        ============================== */
-
-        .message {
 
             padding: 12px;
 
-            border-radius: 6px;
+            border: 1px solid #ccc;
+
+            border-radius: 7px;
+
+            outline: none;
+
+            font-size: 14px;
+        }
+
+        .form-buttons {
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 10px;
+
+            margin-top: 25px;
+        }
+
+        .error-message {
+            background: #ffe2e2;
+
+            color: #c62828;
+
+            padding: 12px;
+
+            border-radius: 8px;
 
             margin-bottom: 15px;
 
             display: none;
         }
 
-        .success {
-            background: #dcfce7;
-            color: #166534;
+        .loading {
+            text-align: center;
+
+            padding: 30px;
+
+            color: #777;
         }
 
-        .error {
-            background: #fee2e2;
-            color: #991b1b;
+        /* TOAST */
+
+        .toast {
+            position: fixed;
+
+            right: 20px;
+            bottom: 20px;
+
+            background: #222;
+
+            color: white;
+
+            padding: 14px 20px;
+
+            border-radius: 8px;
+
+            display: none;
+
+            z-index: 3000;
         }
 
+        /* MOBILE */
 
-        /* ==============================
-           MOBILE
-        ============================== */
+        @media(max-width: 800px) {
 
-        @media (max-width: 600px) {
-
-            header {
-                padding: 12px 15px;
+            .header {
+                padding: 10px 15px;
             }
 
-            header h1 {
-                font-size: 18px;
+            .logo h2 {
+                font-size: 16px;
             }
 
-            .container {
-                width: 94%;
+            .header-right {
+                gap: 6px;
             }
 
-            .profile-row {
+            .username-display {
+                display: none;
+            }
+
+            .navbar {
+                padding: 8px;
+
+                overflow-x: auto;
+            }
+
+            main {
+                padding: 20px 12px;
+            }
+
+            .page-title {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 15px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .customer-card {
+                align-items: flex-start;
+            }
+
+            .customer-right {
+                flex-direction: column;
+            }
+
+            .detail-grid {
                 grid-template-columns: 1fr;
-                gap: 4px;
             }
 
-            .actions input,
-            .actions select,
-            .actions button {
-                width: 100%;
-            }
-
-            .modal-content {
+            .profile-header {
                 padding: 20px;
             }
 
+            .profile-body {
+                padding: 15px;
+            }
+
+            .city-filter-box {
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+            .city-filter-box select {
+                width: 100%;
+            }
+
+            .document {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
         }
 
+        @media(max-width: 500px) {
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat-card {
+                padding: 15px;
+            }
+
+            .stat-card h2 {
+                font-size: 22px;
+            }
+
+            .customer-card {
+                padding: 12px;
+            }
+
+            .customer-name {
+                font-size: 14px;
+            }
+
+            .logout-btn {
+                padding: 8px 10px;
+            }
+        }
     </style>
 
 </head>
 
-
 <body>
 
+    <!-- =====================================================
+         HEADER
+    ===================================================== -->
 
-<!-- ==========================================
-     HEADER
-========================================== -->
+    <header class="header">
 
-<header>
+        <div class="logo">
 
-    <h1>
-        Customer Management System
-    </h1>
+            <div class="logo-box">
+                CM
+            </div>
 
-    <div class="header-right">
+            <h2>
+                Customer Management
+            </h2>
 
-        <span>
-            Welcome,
-            <span id="usernameDisplay">
-                User
+        </div>
+
+        <div class="header-right">
+
+            <span
+                id="loggedInUser"
+                class="username-display">
+                Admin
             </span>
-        </span>
+
+            <button
+                class="logout-btn"
+                onclick="logout()">
+                Logout
+            </button>
+
+            <div
+                class="user"
+                id="userAvatar">
+                A
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         NAVIGATION
+    ===================================================== -->
+
+    <nav class="navbar">
 
         <button
-            class="logout-btn"
-            onclick="logout()"
-        >
-            Logout
-        </button>
+            class="nav-btn active"
+            onclick="showPage('dashboard')">
 
-    </div>
-
-</header>
-
-
-<div class="container">
-
-
-    <!-- ==========================================
-         MESSAGES
-    ========================================== -->
-
-    <div
-        id="successMessage"
-        class="message success"
-    ></div>
-
-    <div
-        id="errorMessage"
-        class="message error"
-    ></div>
-
-
-    <!-- ==========================================
-         DASHBOARD
-    ========================================== -->
-
-    <div class="dashboard">
-
-        <div class="card">
-
-            <h3>
-                Total Customers
-            </h3>
-
-            <p id="totalCustomers">
-                0
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <h3>
-                New
-            </h3>
-
-            <p id="newCustomers">
-                0
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <h3>
-                Renew
-            </h3>
-
-            <p id="renewCustomers">
-                0
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <h3>
-                Pending
-            </h3>
-
-            <p id="pendingCustomers">
-                0
-            </p>
-
-        </div>
-
-
-        <div class="card">
-
-            <h3>
-                Rejected
-            </h3>
-
-            <p id="rejectedCustomers">
-                0
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <!-- ==========================================
-         ACTIONS / SEARCH
-    ========================================== -->
-
-    <div class="actions">
-
-        <input
-            type="text"
-            id="searchInput"
-            placeholder="Search name, mobile, MH number..."
-            oninput="loadCustomers()"
-        >
-
-
-        <select
-            id="statusFilter"
-            onchange="loadCustomers()"
-        >
-
-            <option value="">
-                All Status
-            </option>
-
-            <option value="NEW">
-                New
-            </option>
-
-            <option value="RENEW">
-                Renew
-            </option>
-
-            <option value="PENDING">
-                Pending
-            </option>
-
-            <option value="REJECTED">
-                Rejected
-            </option>
-
-        </select>
-
-
-        <select
-            id="cityFilter"
-            onchange="loadCustomers()"
-        >
-
-            <option value="">
-                All Cities
-            </option>
-
-        </select>
-
-
-        <button onclick="openAddCustomerModal()">
-
-            + Add Customer
+            🏠 Dashboard
 
         </button>
 
-        <button onclick="loadCustomers()">
+        <button
+            class="nav-btn"
+            onclick="showPage('customers')">
 
-            Refresh
+            👥 Customers
 
         </button>
 
-    </div>
+        <button
+            class="nav-btn"
+            onclick="showPage('reports')">
+
+            📊 Reports
+
+        </button>
+
+    </nav>
 
 
-    <!-- ==========================================
-         CUSTOMER TABLE
-    ========================================== -->
+    <main>
 
-    <div class="table-container">
+        <!-- =================================================
+             DASHBOARD
+        ================================================= -->
 
-        <table>
+        <section
+            id="dashboard"
+            class="page active-page">
 
-            <thead>
+            <div class="page-title">
 
-                <tr>
+                <div>
 
-                    <th>
-                        ID
-                    </th>
+                    <h1>
+                        Dashboard
+                    </h1>
 
-                    <th>
-                        Name
-                    </th>
+                    <p>
+                        Customer application overview
+                    </p>
 
-                    <th>
-                        Mobile
-                    </th>
+                </div>
 
-                    <th>
-                        City
-                    </th>
+                <button
+                    class="primary-btn"
+                    onclick="openAddCustomer()">
 
-                    <th>
-                        MH Number
-                    </th>
+                    + Add Customer
 
-                    <th>
-                        Status
-                    </th>
+                </button>
 
-                    <th>
-                        Actions
-                    </th>
-
-                </tr>
-
-            </thead>
+            </div>
 
 
-            <tbody id="customerTableBody">
+            <div class="stats">
 
-                <tr>
+                <div class="stat-card">
+                    <p>Total Customers</p>
+                    <h2 id="totalCount">0</h2>
+                </div>
 
-                    <td
-                        colspan="7"
-                        style="text-align:center;"
-                    >
+                <div class="stat-card">
+                    <p>New</p>
+                    <h2 id="newCount">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>Renew</p>
+                    <h2 id="renewCount">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>Pending</p>
+                    <h2 id="pendingCount">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <p>Rejected</p>
+                    <h2 id="rejectedCount">0</h2>
+                </div>
+
+            </div>
+
+
+            <div class="section-box">
+
+                <div class="section-header">
+
+                    <h3>
+                        Recent Customers
+                    </h3>
+
+                    <button
+                        class="secondary-btn"
+                        onclick="showPage('customers')">
+
+                        View All
+
+                    </button>
+
+                </div>
+
+                <div id="recentCustomers">
+
+                    <div class="loading">
                         Loading...
-                    </td>
+                    </div>
 
-                </tr>
+                </div>
 
-            </tbody>
+            </div>
 
-        </table>
-
-    </div>
-
-</div>
+        </section>
 
 
+        <!-- =================================================
+             CUSTOMERS
+        ================================================= -->
 
-<!-- ==========================================
-     ADD / EDIT CUSTOMER MODAL
-========================================== -->
+        <section
+            id="customers"
+            class="page">
 
-<div
-    id="customerModal"
-    class="modal"
->
+            <div class="page-title">
 
-    <div class="modal-content">
+                <div>
 
-        <span
-            class="close"
-            onclick="closeCustomerModal()"
-        >
-            &times;
-        </span>
+                    <h1>
+                        Customers
+                    </h1>
 
+                    <p>
+                        Manage customer applications
+                    </p>
 
-        <h2 id="modalTitle">
-            Add Customer
-        </h2>
+                </div>
 
+                <button
+                    class="primary-btn"
+                    onclick="openAddCustomer()">
 
-        <form id="customerForm">
+                    + Add Customer
 
+                </button>
 
-            <input
-                type="hidden"
-                id="customerId"
-            >
+            </div>
 
 
-            <div class="form-group">
+            <!-- SEARCH -->
 
-                <label>
-                    Name
-                </label>
+            <div class="search-box">
+
+                🔍
 
                 <input
+                    id="searchInput"
                     type="text"
-                    id="name"
-                    required
-                >
+                    placeholder="Search by name, mobile, MH number or city..."
+                    oninput="displayCustomers()">
 
             </div>
 
 
-            <div class="form-group">
+            <!-- CITY FILTER -->
+
+            <div class="city-filter-box">
 
                 <label>
-                    Mobile Number
+                    City:
                 </label>
 
-                <input
-                    type="text"
-                    id="mobile_number"
-                    required
-                >
+                <select
+                    id="cityFilter"
+                    onchange="displayCustomers()">
 
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Address
-                </label>
-
-                <textarea
-                    id="address"
-                    required
-                ></textarea>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    City
-                </label>
-
-                <input
-                    type="text"
-                    id="city"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    MH Number
-                </label>
-
-                <input
-                    type="text"
-                    id="mh_number"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Aadhaar Number
-                </label>
-
-                <input
-                    type="text"
-                    id="aadhar_number"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    Status
-                </label>
-
-                <select id="current_status">
-
-                    <option value="NEW">
-                        New
-                    </option>
-
-                    <option value="RENEW">
-                        Renew
-                    </option>
-
-                    <option value="PENDING">
-                        Pending
-                    </option>
-
-                    <option value="REJECTED">
-                        Rejected
+                    <option value="ALL">
+                        All Cities
                     </option>
 
                 </select>
@@ -968,7 +1185,270 @@
             </div>
 
 
-            <div class="form-group">
+            <!-- STATUS FILTER -->
+
+            <div class="filters">
+
+                <button
+                    class="filter-btn active"
+                    onclick="filterCustomers('ALL', this)">
+
+                    All
+
+                </button>
+
+                <button
+                    class="filter-btn"
+                    onclick="filterCustomers('NEW', this)">
+
+                    New
+
+                </button>
+
+                <button
+                    class="filter-btn"
+                    onclick="filterCustomers('RENEW', this)">
+
+                    Renew
+
+                </button>
+
+                <button
+                    class="filter-btn"
+                    onclick="filterCustomers('PENDING', this)">
+
+                    Pending
+
+                </button>
+
+                <button
+                    class="filter-btn"
+                    onclick="filterCustomers('REJECTED', this)">
+
+                    Rejected
+
+                </button>
+
+            </div>
+
+
+            <div
+                id="customerList"
+                class="customer-list">
+
+                <div class="loading">
+                    Loading customers...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PROFILE
+        ================================================= -->
+
+        <section
+            id="profile"
+            class="page">
+
+            <button
+                class="secondary-btn"
+                onclick="showPage('customers')"
+                style="margin-bottom:15px">
+
+                ← Back to Customers
+
+            </button>
+
+            <div id="customerProfile"></div>
+
+        </section>
+
+
+        <!-- =================================================
+             REPORTS
+        ================================================= -->
+
+        <section
+            id="reports"
+            class="page">
+
+            <div class="page-title">
+
+                <div>
+
+                    <h1>
+                        Reports
+                    </h1>
+
+                    <p>
+                        Application status summary
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="report-box">
+
+                <div class="report-row">
+                    <strong>Total Customers</strong>
+                    <strong id="reportTotal">0</strong>
+                </div>
+
+                <div class="report-row">
+                    <span>New Applications</span>
+                    <strong id="reportNew">0</strong>
+                </div>
+
+                <div class="report-row">
+                    <span>Renew Applications</span>
+                    <strong id="reportRenew">0</strong>
+                </div>
+
+                <div class="report-row">
+                    <span>Pending Applications</span>
+                    <strong id="reportPending">0</strong>
+                </div>
+
+                <div class="report-row">
+                    <span>Rejected Applications</span>
+                    <strong id="reportRejected">0</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         ADD CUSTOMER MODAL
+    ===================================================== -->
+
+    <div
+        id="customerModal"
+        class="modal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>
+                    Add Customer
+                </h2>
+
+                <button onclick="closeAddCustomer()">
+                    ✕
+                </button>
+
+            </div>
+
+
+            <div
+                id="formError"
+                class="error-message">
+            </div>
+
+
+            <form id="customerForm">
+
+                <label>
+                    Name *
+                </label>
+
+                <input
+                    id="name"
+                    type="text"
+                    required
+                    placeholder="Enter customer name">
+
+
+                <label>
+                    Mobile Number *
+                </label>
+
+                <input
+                    id="mobile"
+                    type="tel"
+                    required
+                    maxlength="15"
+                    placeholder="Enter mobile number">
+
+
+                <label>
+                    Address *
+                </label>
+
+                <textarea
+                    id="address"
+                    rows="3"
+                    required
+                    placeholder="Enter address"></textarea>
+
+
+                <label>
+                    City *
+                </label>
+
+                <input
+                    id="city"
+                    type="text"
+                    required
+                    placeholder="Enter city">
+
+
+                <label>
+                    MH Number *
+                </label>
+
+                <input
+                    id="mhNumber"
+                    type="text"
+                    required
+                    placeholder="Enter MH number">
+
+
+                <label>
+                    Aadhaar Number *
+                </label>
+
+                <input
+                    id="aadhar"
+                    type="text"
+                    required
+                    maxlength="12"
+                    placeholder="Enter Aadhaar number">
+
+
+                <label>
+                    Application Status
+                </label>
+
+                <select id="status">
+
+                    <option value="NEW">
+                        NEW
+                    </option>
+
+                    <option value="RENEW">
+                        RENEW
+                    </option>
+
+                    <option value="PENDING">
+                        PENDING
+                    </option>
+
+                    <option value="REJECTED">
+                        REJECTED
+                    </option>
+
+                </select>
+
 
                 <label>
                     Remarks
@@ -976,1504 +1456,2927 @@
 
                 <textarea
                     id="remarks"
-                ></textarea>
+                    rows="3"
+                    placeholder="Enter remarks"></textarea>
+
+
+                <label>
+                    Documents
+                </label>
+
+                <input
+                    id="documents"
+                    type="file"
+                    multiple
+                    accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+
+
+                <div class="form-buttons">
+
+                    <button
+                        type="button"
+                        class="secondary-btn"
+                        onclick="closeAddCustomer()">
+
+                        Cancel
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-btn">
+
+                        Save Customer
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         EDIT CUSTOMER MODAL
+    ===================================================== -->
+
+    <div
+        id="editModal"
+        class="modal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>
+                    Edit Customer
+                </h2>
+
+                <button onclick="closeEditCustomer()">
+                    ✕
+                </button>
 
             </div>
+
+
+            <div
+                id="editFormError"
+                class="error-message">
+            </div>
+
+
+            <form id="editCustomerForm">
+
+                <input
+                    id="editId"
+                    type="hidden">
+
+
+                <label>
+                    Name *
+                </label>
+
+                <input
+                    id="editName"
+                    type="text"
+                    required>
+
+
+                <label>
+                    Mobile Number *
+                </label>
+
+                <input
+                    id="editMobile"
+                    type="tel"
+                    required>
+
+
+                <label>
+                    Address *
+                </label>
+
+                <textarea
+                    id="editAddress"
+                    rows="3"
+                    required></textarea>
+
+
+                <label>
+                    City *
+                </label>
+
+                <input
+                    id="editCity"
+                    type="text"
+                    required
+                    placeholder="Enter city">
+
+
+                <label>
+                    MH Number *
+                </label>
+
+                <input
+                    id="editMhNumber"
+                    type="text"
+                    required>
+
+
+                <label>
+                    Aadhaar Number *
+                </label>
+
+                <input
+                    id="editAadhar"
+                    type="text"
+                    required
+                    maxlength="12">
+
+
+                <label>
+                    Status
+                </label>
+
+                <select id="editStatus">
+
+                    <option value="NEW">
+                        NEW
+                    </option>
+
+                    <option value="RENEW">
+                        RENEW
+                    </option>
+
+                    <option value="PENDING">
+                        PENDING
+                    </option>
+
+                    <option value="REJECTED">
+                        REJECTED
+                    </option>
+
+                </select>
+
+
+                <label>
+                    Remarks
+                </label>
+
+                <textarea
+                    id="editRemarks"
+                    rows="3"></textarea>
+
+
+                <div class="form-buttons">
+
+                    <button
+                        type="button"
+                        class="secondary-btn"
+                        onclick="closeEditCustomer()">
+
+                        Cancel
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="primary-btn">
+
+                        Update Customer
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         STATUS MODAL
+    ===================================================== -->
+
+    <div
+        id="statusModal"
+        class="modal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2>
+                    Change Status
+                </h2>
+
+                <button onclick="closeStatusModal()">
+                    ✕
+                </button>
+
+            </div>
+
+
+            <input
+                id="statusCustomerId"
+                type="hidden">
+
+
+            <label>
+                New Status
+            </label>
+
+            <select id="newStatus">
+
+                <option value="NEW">
+                    NEW
+                </option>
+
+                <option value="RENEW">
+                    RENEW
+                </option>
+
+                <option value="PENDING">
+                    PENDING
+                </option>
+
+                <option value="REJECTED">
+                    REJECTED
+                </option>
+
+            </select>
+
+
+            <label>
+                Remarks
+            </label>
+
+            <textarea
+                id="statusRemarks"
+                rows="3"
+                placeholder="Reason for status change"></textarea>
 
 
             <div class="form-buttons">
 
                 <button
-                    type="submit"
-                    class="primary-btn"
-                >
-                    Save Customer
+                    class="secondary-btn"
+                    onclick="closeStatusModal()">
+
+                    Cancel
+
                 </button>
 
                 <button
-                    type="button"
-                    class="secondary-btn"
-                    onclick="closeCustomerModal()"
-                >
-                    Cancel
+                    class="primary-btn"
+                    onclick="saveStatus()">
+
+                    Update Status
+
                 </button>
 
             </div>
 
-        </form>
-
-    </div>
-
-</div>
-
-
-
-<!-- ==========================================
-     PROFILE MODAL
-========================================== -->
-
-<div
-    id="profileModal"
-    class="modal"
->
-
-    <div class="modal-content">
-
-        <span
-            class="close"
-            onclick="closeProfileModal()"
-        >
-            &times;
-        </span>
-
-
-        <h2>
-            Customer Profile
-        </h2>
-
-
-        <div id="profileDetails">
-
-            Loading...
-
-        </div>
-
-
-        <div class="documents">
-
-            <h3>
-                Documents
-            </h3>
-
-            <div id="documentsList">
-                Loading...
-            </div>
-
-        </div>
-
-
-        <div class="form-buttons">
-
-            <button
-                class="secondary-btn"
-                onclick="closeProfileModal()"
-            >
-                Close
-            </button>
-
         </div>
 
     </div>
 
-</div>
 
+    <!-- =====================================================
+         TOAST
+    ===================================================== -->
 
+    <div
+        id="toast"
+        class="toast">
+    </div>
 
-<script>
 
+    <script>
 
-// ======================================================
-// API URL
-// ======================================================
+        /* =====================================================
+           API + JWT AUTHENTICATION
+        ===================================================== */
 
-// IMPORTANT:
-// Backend is deployed on Render.
-// /api is included here because backend routes use /api/...
+        const API_URL =
+            "https://customer-management-system-gful.onrender.com";
 
-const API_URL =
-    "https://customer-management-system-gful.onrender.com/api";
 
+        /*
+         * Check login immediately.
+         */
 
-// Backend base URL without /api.
-// Used for document files.
+        const authToken =
+            localStorage.getItem("authToken");
 
-const BACKEND_URL =
-    "https://customer-management-system-gful.onrender.com";
 
+        if (!authToken) {
 
-// ======================================================
-// AUTHENTICATION
-// ======================================================
-
-const token =
-    localStorage.getItem("token");
-
-
-if (!token) {
-
-    window.location.href = "login.html";
-
-}
-
-
-// ======================================================
-// USERNAME
-// ======================================================
-
-const savedUsername =
-    localStorage.getItem("username");
-
-if (savedUsername) {
-
-    document.getElementById(
-        "usernameDisplay"
-    ).textContent = savedUsername;
-
-}
-
-
-// ======================================================
-// API HEADERS
-// ======================================================
-
-function getHeaders() {
-
-    return {
-
-        "Content-Type": "application/json",
-
-        "Authorization":
-            `Bearer ${token}`
-
-    };
-
-}
-
-
-// ======================================================
-// LOGOUT
-// ======================================================
-
-function logout() {
-
-    localStorage.removeItem("token");
-
-    localStorage.removeItem("username");
-
-    window.location.href = "login.html";
-
-}
-
-
-// ======================================================
-// MESSAGE FUNCTIONS
-// ======================================================
-
-function showSuccess(message) {
-
-    const element =
-        document.getElementById("successMessage");
-
-    element.textContent = message;
-
-    element.style.display = "block";
-
-
-    setTimeout(() => {
-
-        element.style.display = "none";
-
-    }, 3000);
-
-}
-
-
-function showError(message) {
-
-    const element =
-        document.getElementById("errorMessage");
-
-    element.textContent = message;
-
-    element.style.display = "block";
-
-
-    setTimeout(() => {
-
-        element.style.display = "none";
-
-    }, 5000);
-
-}
-
-
-// ======================================================
-// LOAD DASHBOARD
-// ======================================================
-
-async function loadDashboard() {
-
-    try {
-
-        const response = await fetch(
-            `${API_URL}/dashboard`,
-            {
-                headers: getHeaders()
-            }
-        );
-
-
-        if (response.status === 401) {
-
-            logout();
-
-            return;
+            window.location.href =
+                "login.html";
 
         }
 
 
-        const data =
-            await response.json();
-
-
-        document.getElementById(
-            "totalCustomers"
-        ).textContent =
-            data.total || 0;
-
-
-        document.getElementById(
-            "newCustomers"
-        ).textContent =
-            data.new || 0;
-
-
-        document.getElementById(
-            "renewCustomers"
-        ).textContent =
-            data.renew || 0;
-
-
-        document.getElementById(
-            "pendingCustomers"
-        ).textContent =
-            data.pending || 0;
-
-
-        document.getElementById(
-            "rejectedCustomers"
-        ).textContent =
-            data.rejected || 0;
-
-    }
-    catch (error) {
-
-        console.error(
-            "Dashboard error:",
-            error
-        );
-
-    }
-
-}
-
-
-// ======================================================
-// LOAD CITIES
-// ======================================================
-
-async function loadCities() {
-
-    try {
-
-        const response = await fetch(
-            `${API_URL}/customers/cities`,
-            {
-                headers: getHeaders()
-            }
-        );
-
-
-        if (response.status === 401) {
-
-            logout();
-
-            return;
-
-        }
-
-
-        const cities =
-            await response.json();
-
-
-        const select =
-            document.getElementById(
-                "cityFilter"
-            );
-
-
-        select.innerHTML =
-            `<option value="">All Cities</option>`;
-
-
-        cities.forEach(city => {
-
-            const option =
-                document.createElement("option");
-
-            option.value = city.city;
-
-            option.textContent = city.city;
-
-            select.appendChild(option);
-
-        });
-
-    }
-    catch (error) {
-
-        console.error(
-            "Cities error:",
-            error
-        );
-
-    }
-
-}
-
-
-// ======================================================
-// LOAD CUSTOMERS
-// ======================================================
-
-async function loadCustomers() {
-
-    try {
-
-        const search =
-            document
-                .getElementById("searchInput")
-                .value
-                .trim();
-
-
-        const status =
-            document
-                .getElementById("statusFilter")
-                .value;
-
-
-        const city =
-            document
-                .getElementById("cityFilter")
-                .value;
-
-
-        let url =
-            `${API_URL}/customers`;
-
-
-        const params = new URLSearchParams();
-
-
-        if (search) {
-
-            params.append(
-                "search",
-                search
-            );
-
-        }
-
-
-        if (status) {
-
-            params.append(
-                "status",
-                status
-            );
-
-        }
-
-
-        if (city) {
-
-            params.append(
-                "city",
-                city
-            );
-
-        }
-
-
-        if (params.toString()) {
-
-            url +=
-                "?" +
-                params.toString();
-
-        }
-
-
-        const response =
-            await fetch(
-                url,
-                {
-                    headers: getHeaders()
-                }
-            );
-
-
-        if (response.status === 401) {
-
-            logout();
-
-            return;
-
-        }
-
-
-        const customers =
-            await response.json();
-
-
-        const tbody =
-            document.getElementById(
-                "customerTableBody"
-            );
-
-
-        tbody.innerHTML = "";
-
-
-        if (
-            !customers ||
-            customers.length === 0
+        /*
+         * This function automatically adds
+         *
+         * Authorization: Bearer TOKEN
+         *
+         * to every protected API request.
+         */
+
+        async function apiFetch(
+            url,
+            options = {}
         ) {
 
-            tbody.innerHTML = `
+            const token =
+                localStorage.getItem(
+                    "authToken"
+                );
 
-                <tr>
 
-                    <td
-                        colspan="7"
-                        style="text-align:center;"
-                    >
-                        No customers found
-                    </td>
+            if (!token) {
 
-                </tr>
+                window.location.href =
+                    "login.html";
 
-            `;
+                return;
 
-            return;
+            }
 
-        }
 
+            options.headers = {
 
-        customers.forEach(customer => {
+                ...(options.headers || {}),
 
-            const row =
-                document.createElement("tr");
-
-
-            row.innerHTML = `
-
-                <td>
-                    ${customer.customer_id}
-                </td>
-
-                <td>
-                    ${escapeHtml(
-                        customer.name
-                    )}
-                </td>
-
-                <td>
-                    ${escapeHtml(
-                        customer.mobile_number
-                    )}
-                </td>
-
-                <td>
-                    ${escapeHtml(
-                        customer.city
-                    )}
-                </td>
-
-                <td>
-                    ${escapeHtml(
-                        customer.mh_number
-                    )}
-                </td>
-
-                <td>
-
-                    <span
-                        class="status ${customer.current_status}"
-                    >
-                        ${customer.current_status}
-                    </span>
-
-                </td>
-
-                <td>
-
-                    <button
-                        class="btn view-btn"
-                        onclick="viewCustomer(
-                            ${customer.customer_id}
-                        )"
-                    >
-                        View
-                    </button>
-
-
-                    <button
-                        class="btn edit-btn"
-                        onclick="editCustomer(
-                            ${customer.customer_id}
-                        )"
-                    >
-                        Edit
-                    </button>
-
-
-                    <button
-                        class="btn delete-btn"
-                        onclick="deleteCustomer(
-                            ${customer.customer_id}
-                        )"
-                    >
-                        Delete
-                    </button>
-
-                </td>
-
-            `;
-
-
-            tbody.appendChild(row);
-
-        });
-
-    }
-    catch (error) {
-
-        console.error(
-            "Customers error:",
-            error
-        );
-
-        showError(
-            "Unable to load customers."
-        );
-
-    }
-
-}
-
-
-// ======================================================
-// ESCAPE HTML
-// ======================================================
-
-function escapeHtml(value) {
-
-    if (value === null ||
-        value === undefined) {
-
-        return "";
-
-    }
-
-
-    const div =
-        document.createElement("div");
-
-    div.textContent =
-        String(value);
-
-    return div.innerHTML;
-
-}
-
-
-// ======================================================
-// OPEN ADD CUSTOMER MODAL
-// ======================================================
-
-function openAddCustomerModal() {
-
-    document.getElementById(
-        "modalTitle"
-    ).textContent =
-        "Add Customer";
-
-
-    document.getElementById(
-        "customerForm"
-    ).reset();
-
-
-    document.getElementById(
-        "customerId"
-    ).value = "";
-
-
-    document.getElementById(
-        "customerModal"
-    ).style.display =
-        "flex";
-
-}
-
-
-// ======================================================
-// CLOSE CUSTOMER MODAL
-// ======================================================
-
-function closeCustomerModal() {
-
-    document.getElementById(
-        "customerModal"
-    ).style.display =
-        "none";
-
-}
-
-
-// ======================================================
-// ADD / EDIT CUSTOMER
-// ======================================================
-
-document
-    .getElementById("customerForm")
-    .addEventListener(
-        "submit",
-        async function(event) {
-
-            event.preventDefault();
-
-
-            const id =
-                document.getElementById(
-                    "customerId"
-                ).value;
-
-
-            const customerData = {
-
-                name:
-                    document.getElementById(
-                        "name"
-                    ).value.trim(),
-
-                mobile_number:
-                    document.getElementById(
-                        "mobile_number"
-                    ).value.trim(),
-
-                address:
-                    document.getElementById(
-                        "address"
-                    ).value.trim(),
-
-                city:
-                    document.getElementById(
-                        "city"
-                    ).value.trim(),
-
-                mh_number:
-                    document.getElementById(
-                        "mh_number"
-                    ).value.trim(),
-
-                aadhar_number:
-                    document.getElementById(
-                        "aadhar_number"
-                    ).value.trim(),
-
-                current_status:
-                    document.getElementById(
-                        "current_status"
-                    ).value,
-
-                remarks:
-                    document.getElementById(
-                        "remarks"
-                    ).value.trim()
+                "Authorization":
+                    `Bearer ${token}`
 
             };
 
 
+            const response =
+                await fetch(
+                    url,
+                    options
+                );
+
+
+            /*
+             * JWT expired or invalid.
+             */
+
+            if (
+                response.status === 401 ||
+                response.status === 403
+            ) {
+
+                localStorage.removeItem(
+                    "authToken"
+                );
+
+                localStorage.removeItem(
+                    "username"
+                );
+
+                window.location.href =
+                    "login.html";
+
+                return;
+
+            }
+
+
+            return response;
+
+        }
+
+
+        /* =====================================================
+           LOGGED-IN USER
+        ===================================================== */
+
+        const loggedInUsername =
+            localStorage.getItem(
+                "username"
+            );
+
+
+        if (loggedInUsername) {
+
+            const usernameElement =
+                document.getElementById(
+                    "loggedInUser"
+                );
+
+
+            const avatarElement =
+                document.getElementById(
+                    "userAvatar"
+                );
+
+
+            usernameElement.textContent =
+                loggedInUsername;
+
+
+            avatarElement.textContent =
+                loggedInUsername
+                    .charAt(0)
+                    .toUpperCase();
+
+        }
+
+
+        /* =====================================================
+           LOGOUT
+        ===================================================== */
+
+        function logout() {
+
+            const confirmed =
+                confirm(
+                    "Are you sure you want to logout?"
+                );
+
+
+            if (!confirmed) {
+                return;
+            }
+
+
+            localStorage.removeItem(
+                "authToken"
+            );
+
+
+            localStorage.removeItem(
+                "username"
+            );
+
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        /* =====================================================
+           GLOBAL VARIABLES
+        ===================================================== */
+
+        let customers = [];
+
+        let currentFilter = "ALL";
+
+        let currentCustomerId = null;
+
+
+        /* =====================================================
+           HELPERS
+        ===================================================== */
+
+        function escapeHTML(value) {
+
+            if (
+                value === null ||
+                value === undefined
+            ) {
+
+                return "";
+
+            }
+
+
+            return String(value)
+
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
+
+
+        function formatDate(date) {
+
+            if (!date) {
+                return "";
+            }
+
+
+            return new Date(date)
+                .toLocaleString("en-IN");
+
+        }
+
+
+        function maskAadhaar(aadhar) {
+
+            if (!aadhar) {
+
+                return "Not available";
+
+            }
+
+
+            const value =
+                String(aadhar);
+
+
+            if (value.length <= 4) {
+
+                return "XXXX " + value;
+
+            }
+
+
+            return "XXXX XXXX " +
+                value.slice(-4);
+
+        }
+
+
+        function showToast(message) {
+
+            const toast =
+                document.getElementById(
+                    "toast"
+                );
+
+
+            toast.textContent =
+                message;
+
+
+            toast.style.display =
+                "block";
+
+
+            setTimeout(() => {
+
+                toast.style.display =
+                    "none";
+
+            }, 3000);
+
+        }
+
+
+        /* =====================================================
+           LOAD DATA
+        ===================================================== */
+
+        async function loadData() {
+
             try {
 
-                let response;
+                await Promise.all([
+
+                    loadCustomers(),
+
+                    loadDashboard(),
+
+                    loadCities()
+
+                ]);
+
+            }
+            catch (error) {
+
+                console.error(
+                    error
+                );
 
 
-                if (id) {
+                showToast(
+                    "Could not connect to backend"
+                );
 
-                    response =
-                        await fetch(
-                            `${API_URL}/customers/${id}`,
-                            {
-                                method: "PUT",
+            }
 
-                                headers:
-                                    getHeaders(),
-
-                                body:
-                                    JSON.stringify(
-                                        customerData
-                                    )
-                            }
-                        );
-
-                }
-                else {
-
-                    response =
-                        await fetch(
-                            `${API_URL}/customers`,
-                            {
-                                method: "POST",
-
-                                headers:
-                                    getHeaders(),
-
-                                body:
-                                    JSON.stringify(
-                                        customerData
-                                    )
-                            }
-                        );
-
-                }
+        }
 
 
-                if (response.status === 401) {
+        /* =====================================================
+           LOAD CUSTOMERS
+        ===================================================== */
 
-                    logout();
+        async function loadCustomers() {
 
+            const response =
+                await apiFetch(
+                    `${API_URL}/customers`
+                );
+
+
+            if (!response) {
+                return;
+            }
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Failed to load customers"
+                );
+
+            }
+
+
+            customers =
+                await response.json();
+
+
+            displayCustomers();
+
+            displayRecentCustomers();
+
+        }
+
+
+        /* =====================================================
+           LOAD CITIES
+        ===================================================== */
+
+        async function loadCities() {
+
+            try {
+
+                const response =
+                    await apiFetch(
+                        `${API_URL}/customers/cities`
+                    );
+
+
+                if (!response) {
                     return;
+                }
+
+
+                if (!response.ok) {
+                    return;
+                }
+
+
+                const cities =
+                    await response.json();
+
+
+                const cityFilter =
+                    document.getElementById(
+                        "cityFilter"
+                    );
+
+
+                cityFilter.innerHTML =
+
+                    `<option value="ALL">
+                        All Cities
+                    </option>`;
+
+
+                cities.forEach(city => {
+
+                    if (!city) {
+                        return;
+                    }
+
+
+                    const option =
+                        document.createElement(
+                            "option"
+                        );
+
+
+                    option.value =
+                        city;
+
+
+                    option.textContent =
+                        city;
+
+
+                    cityFilter.appendChild(
+                        option
+                    );
+
+                });
+
+            }
+            catch (error) {
+
+                console.error(
+                    "Could not load cities:",
+                    error
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           DASHBOARD
+        ===================================================== */
+
+        async function loadDashboard() {
+
+            const response =
+                await apiFetch(
+                    `${API_URL}/dashboard`
+                );
+
+
+            if (!response) {
+                return;
+            }
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Failed to load dashboard"
+                );
+
+            }
+
+
+            const data =
+                await response.json();
+
+
+            document.getElementById(
+                "totalCount"
+            ).textContent =
+                data.total || 0;
+
+
+            document.getElementById(
+                "newCount"
+            ).textContent =
+                data.new_count || 0;
+
+
+            document.getElementById(
+                "renewCount"
+            ).textContent =
+                data.renew_count || 0;
+
+
+            document.getElementById(
+                "pendingCount"
+            ).textContent =
+                data.pending_count || 0;
+
+
+            document.getElementById(
+                "rejectedCount"
+            ).textContent =
+                data.rejected_count || 0;
+
+
+            document.getElementById(
+                "reportTotal"
+            ).textContent =
+                data.total || 0;
+
+
+            document.getElementById(
+                "reportNew"
+            ).textContent =
+                data.new_count || 0;
+
+
+            document.getElementById(
+                "reportRenew"
+            ).textContent =
+                data.renew_count || 0;
+
+
+            document.getElementById(
+                "reportPending"
+            ).textContent =
+                data.pending_count || 0;
+
+
+            document.getElementById(
+                "reportRejected"
+            ).textContent =
+                data.rejected_count || 0;
+
+        }
+
+
+        /* =====================================================
+           RECENT CUSTOMERS
+        ===================================================== */
+
+        function displayRecentCustomers() {
+
+            const container =
+                document.getElementById(
+                    "recentCustomers"
+                );
+
+
+            const recent =
+                customers.slice(0, 5);
+
+
+            if (recent.length === 0) {
+
+                container.innerHTML = `
+
+                    <div class="loading">
+
+                        No customers available.
+
+                    </div>
+
+                `;
+
+
+                return;
+
+            }
+
+
+            container.innerHTML =
+                recent.map(
+                    customer => {
+
+                        const firstLetter =
+                            customer.name
+                                .charAt(0)
+                                .toUpperCase();
+
+
+                        return `
+
+                            <div
+                                class="customer-card"
+                                onclick="openProfile(${customer.customer_id})">
+
+                                <div class="customer-left">
+
+                                    <div class="avatar">
+                                        ${escapeHTML(firstLetter)}
+                                    </div>
+
+                                    <div>
+
+                                        <div class="customer-name">
+                                            ${escapeHTML(customer.name)}
+                                        </div>
+
+                                        <div class="customer-info">
+                                            📱 ${escapeHTML(customer.mobile_number)}
+                                        </div>
+
+                                        <div class="customer-info">
+                                            📍 ${escapeHTML(
+                                                customer.city ||
+                                                "City not available"
+                                            )}
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="customer-right">
+
+                                    <span
+                                        class="status status-${escapeHTML(customer.current_status)}">
+
+                                        ${escapeHTML(
+                                            customer.current_status
+                                        )}
+
+                                    </span>
+
+                                    →
+
+                                </div>
+
+                            </div>
+
+                        `;
+
+                    }
+                ).join("");
+
+        }
+
+
+        /* =====================================================
+           DISPLAY CUSTOMERS
+        ===================================================== */
+
+        function displayCustomers() {
+
+            const list =
+                document.getElementById(
+                    "customerList"
+                );
+
+
+            const search =
+                document
+                    .getElementById(
+                        "searchInput"
+                    )
+                    .value
+                    .toLowerCase()
+                    .trim();
+
+
+            const selectedCity =
+                document.getElementById(
+                    "cityFilter"
+                ).value;
+
+
+            const filtered =
+                customers.filter(
+                    customer => {
+
+
+                        const matchesStatus =
+                            currentFilter === "ALL" ||
+                            customer.current_status ===
+                            currentFilter;
+
+
+                        const matchesCity =
+                            selectedCity === "ALL" ||
+                            String(
+                                customer.city || ""
+                            )
+                                .toLowerCase() ===
+                            selectedCity.toLowerCase();
+
+
+                        const matchesSearch =
+
+                            String(
+                                customer.name || ""
+                            )
+                                .toLowerCase()
+                                .includes(search)
+
+                            ||
+
+                            String(
+                                customer.mobile_number || ""
+                            )
+                                .toLowerCase()
+                                .includes(search)
+
+                            ||
+
+                            String(
+                                customer.mh_number || ""
+                            )
+                                .toLowerCase()
+                                .includes(search)
+
+                            ||
+
+                            String(
+                                customer.city || ""
+                            )
+                                .toLowerCase()
+                                .includes(search);
+
+
+                        return (
+                            matchesStatus &&
+                            matchesCity &&
+                            matchesSearch
+                        );
+
+                    }
+                );
+
+
+            if (filtered.length === 0) {
+
+                list.innerHTML = `
+
+                    <div class="section-box">
+
+                        No customers found.
+
+                    </div>
+
+                `;
+
+
+                return;
+
+            }
+
+
+            list.innerHTML =
+                filtered.map(
+                    customer => {
+
+                        const firstLetter =
+                            customer.name
+                                .charAt(0)
+                                .toUpperCase();
+
+
+                        return `
+
+                            <div
+                                class="customer-card"
+                                onclick="openProfile(${customer.customer_id})">
+
+                                <div class="customer-left">
+
+                                    <div class="avatar">
+
+                                        ${escapeHTML(
+                                            firstLetter
+                                        )}
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <div class="customer-name">
+
+                                            ${escapeHTML(
+                                                customer.name
+                                            )}
+
+                                        </div>
+
+
+                                        <div class="customer-info">
+
+                                            📱
+                                            ${escapeHTML(
+                                                customer.mobile_number
+                                            )}
+
+                                        </div>
+
+
+                                        <div class="customer-info">
+
+                                            🚗
+                                            ${escapeHTML(
+                                                customer.mh_number
+                                            )}
+
+                                        </div>
+
+
+                                        <div class="customer-info">
+
+                                            📍
+                                            ${escapeHTML(
+                                                customer.city ||
+                                                "City not available"
+                                            )}
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="customer-right">
+
+                                    <span
+                                        class="status status-${escapeHTML(customer.current_status)}">
+
+                                        ${escapeHTML(
+                                            customer.current_status
+                                        )}
+
+                                    </span>
+
+
+                                    →
+
+                                </div>
+
+                            </div>
+
+                        `;
+
+                    }
+                ).join("");
+
+        }
+
+
+        /* =====================================================
+           STATUS FILTER
+        ===================================================== */
+
+        function filterCustomers(
+            status,
+            button
+        ) {
+
+            currentFilter =
+                status;
+
+
+            document
+                .querySelectorAll(
+                    ".filter-btn"
+                )
+                .forEach(
+                    btn => {
+
+                        btn.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+            button.classList.add(
+                "active"
+            );
+
+
+            displayCustomers();
+
+        }
+
+
+        /* =====================================================
+           OPEN PROFILE
+        ===================================================== */
+
+        async function openProfile(id) {
+
+            try {
+
+                currentCustomerId =
+                    id;
+
+
+                const response =
+                    await apiFetch(
+                        `${API_URL}/customers/${id}`
+                    );
+
+
+                if (!response) {
+                    return;
+                }
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Customer not found"
+                    );
 
                 }
 
 
-                const data =
+                const customer =
+                    await response.json();
+
+
+                renderProfile(
+                    customer
+                );
+
+
+                showPage(
+                    "profile"
+                );
+
+            }
+            catch (error) {
+
+                console.error(
+                    error
+                );
+
+
+                showToast(
+                    "Could not load customer"
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           PROFILE
+        ===================================================== */
+
+        function renderProfile(
+            customer
+        ) {
+
+            const profile =
+                document.getElementById(
+                    "customerProfile"
+                );
+
+
+            const firstLetter =
+                customer.name
+                    .charAt(0)
+                    .toUpperCase();
+
+
+            let documentsHTML =
+                "";
+
+
+            if (
+                !customer.documents ||
+                customer.documents.length === 0
+            ) {
+
+                documentsHTML = `
+
+                    <div class="loading">
+
+                        No documents uploaded.
+
+                    </div>
+
+                `;
+
+            }
+            else {
+
+                documentsHTML =
+                    customer.documents
+                        .map(
+                            doc => {
+
+                                const fileUrl =
+                                    "http://localhost:5000" +
+                                    doc.file_path;
+
+
+                                return `
+
+                                    <div class="document">
+
+                                        <div class="document-name">
+
+                                            📄
+
+                                            ${escapeHTML(
+                                                doc.document_name
+                                            )}
+
+                                        </div>
+
+
+                                        <div class="document-actions">
+
+                                            <button
+                                                onclick="window.open('${fileUrl}', '_blank')">
+
+                                                View
+
+                                            </button>
+
+
+                                            <button
+                                                onclick="deleteDocument(${doc.document_id})">
+
+                                                Delete
+
+                                            </button>
+
+                                        </div>
+
+                                    </div>
+
+                                `;
+
+                            }
+                        )
+                        .join("");
+
+            }
+
+
+            let historyHTML =
+                "";
+
+
+            if (
+                !customer.status_history ||
+                customer.status_history.length === 0
+            ) {
+
+                historyHTML = `
+
+                    <div class="loading">
+
+                        No status history.
+
+                    </div>
+
+                `;
+
+            }
+            else {
+
+                historyHTML =
+                    customer.status_history
+                        .map(
+                            item => {
+
+                                const transition =
+                                    item.old_status
+                                        ? `${item.old_status} → ${item.new_status}`
+                                        : item.new_status;
+
+
+                                return `
+
+                                    <div class="history-item">
+
+                                        <div class="history-date">
+
+                                            ${escapeHTML(
+                                                formatDate(
+                                                    item.changed_at
+                                                )
+                                            )}
+
+                                        </div>
+
+
+                                        <strong>
+
+                                            ${escapeHTML(
+                                                transition
+                                            )}
+
+                                        </strong>
+
+
+                                        ${
+                                            item.remarks
+                                                ?
+                                                `
+                                                    <div class="history-remark">
+
+                                                        ${escapeHTML(
+                                                            item.remarks
+                                                        )}
+
+                                                    </div>
+                                                `
+                                                :
+                                                ""
+                                        }
+
+                                    </div>
+
+                                `;
+
+                            }
+                        )
+                        .join("");
+
+            }
+
+
+            profile.innerHTML = `
+
+                <div class="profile-container">
+
+                    <div class="profile-header">
+
+                        <div class="profile-avatar">
+
+                            ${escapeHTML(
+                                firstLetter
+                            )}
+
+                        </div>
+
+
+                        <div>
+
+                            <h1>
+
+                                ${escapeHTML(
+                                    customer.name
+                                )}
+
+                            </h1>
+
+
+                            <span
+                                class="status status-${escapeHTML(customer.current_status)}">
+
+                                ${escapeHTML(
+                                    customer.current_status
+                                )}
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="profile-body">
+
+
+                        <!-- PERSONAL DETAILS -->
+
+                        <div class="detail-section">
+
+                            <h3>
+                                Personal Details
+                            </h3>
+
+
+                            <div class="detail-grid">
+
+
+                                <div class="detail-item">
+
+                                    <label>
+                                        Name
+                                    </label>
+
+                                    <strong>
+                                        ${escapeHTML(
+                                            customer.name
+                                        )}
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="detail-item">
+
+                                    <label>
+                                        Mobile Number
+                                    </label>
+
+                                    <strong>
+                                        ${escapeHTML(
+                                            customer.mobile_number
+                                        )}
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="detail-item">
+
+                                    <label>
+                                        Address
+                                    </label>
+
+                                    <strong>
+                                        ${escapeHTML(
+                                            customer.address
+                                        )}
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="detail-item">
+
+                                    <label>
+                                        City
+                                    </label>
+
+                                    <strong>
+                                        ${escapeHTML(
+                                            customer.city ||
+                                            "Not available"
+                                        )}
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="detail-item">
+
+                                    <label>
+                                        MH Number
+                                    </label>
+
+                                    <strong>
+                                        ${escapeHTML(
+                                            customer.mh_number
+                                        )}
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="detail-item">
+
+                                    <label>
+                                        Aadhaar Number
+                                    </label>
+
+                                    <strong>
+                                        ${escapeHTML(
+                                            maskAadhaar(
+                                                customer.aadhar_number
+                                            )
+                                        )}
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="detail-item">
+
+                                    <label>
+                                        Created
+                                    </label>
+
+                                    <strong>
+                                        ${escapeHTML(
+                                            formatDate(
+                                                customer.created_at
+                                            )
+                                        )}
+                                    </strong>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- STATUS -->
+
+                        <div class="detail-section">
+
+                            <h3>
+                                Application Status
+                            </h3>
+
+
+                            <span
+                                class="status status-${escapeHTML(customer.current_status)}">
+
+                                ${escapeHTML(
+                                    customer.current_status
+                                )}
+
+                            </span>
+
+
+                            ${
+                                customer.remarks
+                                    ?
+                                    `
+                                        <p style="margin-top:15px">
+
+                                            ${escapeHTML(
+                                                customer.remarks
+                                            )}
+
+                                        </p>
+                                    `
+                                    :
+                                    ""
+                            }
+
+                        </div>
+
+
+                        <!-- DOCUMENTS -->
+
+                        <div class="detail-section">
+
+                            <h3>
+                                Documents
+                            </h3>
+
+
+                            ${documentsHTML}
+
+
+                            <div class="upload-area">
+
+                                <input
+                                    type="file"
+                                    id="profileDocument"
+                                    accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+
+
+                                <button
+                                    class="primary-btn"
+                                    onclick="uploadDocument()">
+
+                                    + Upload Document
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- HISTORY -->
+
+                        <div class="detail-section">
+
+                            <h3>
+                                Status History
+                            </h3>
+
+
+                            ${historyHTML}
+
+                        </div>
+
+
+                        <!-- ACTIONS -->
+
+                        <div class="detail-section">
+
+                            <button
+                                class="primary-btn"
+                                onclick="openEditCustomer(${customer.customer_id})">
+
+                                ✏ Edit Customer
+
+                            </button>
+
+
+                            <button
+                                class="secondary-btn"
+                                onclick="openStatusModal(${customer.customer_id}, '${escapeHTML(customer.current_status)}')">
+
+                                Change Status
+
+                            </button>
+
+
+                            <button
+                                class="danger-btn"
+                                onclick="deleteCustomer(${customer.customer_id})">
+
+                                Delete Customer
+
+                            </button>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        /* =====================================================
+           ADD CUSTOMER MODAL
+        ===================================================== */
+
+        function openAddCustomer() {
+
+            document.getElementById(
+                "customerModal"
+            ).style.display =
+                "block";
+
+        }
+
+
+        function closeAddCustomer() {
+
+            document.getElementById(
+                "customerModal"
+            ).style.display =
+                "none";
+
+
+            document.getElementById(
+                "customerForm"
+            ).reset();
+
+
+            document.getElementById(
+                "formError"
+            ).style.display =
+                "none";
+
+        }
+
+
+        /* =====================================================
+           ADD CUSTOMER
+        ===================================================== */
+
+        document
+            .getElementById(
+                "customerForm"
+            )
+            .addEventListener(
+                "submit",
+                async function(event) {
+
+                    event.preventDefault();
+
+
+                    const errorBox =
+                        document.getElementById(
+                            "formError"
+                        );
+
+
+                    errorBox.style.display =
+                        "none";
+
+
+                    const customer = {
+
+                        name:
+                            document
+                                .getElementById(
+                                    "name"
+                                )
+                                .value
+                                .trim(),
+
+
+                        mobile_number:
+                            document
+                                .getElementById(
+                                    "mobile"
+                                )
+                                .value
+                                .trim(),
+
+
+                        address:
+                            document
+                                .getElementById(
+                                    "address"
+                                )
+                                .value
+                                .trim(),
+
+
+                        city:
+                            document
+                                .getElementById(
+                                    "city"
+                                )
+                                .value
+                                .trim(),
+
+
+                        mh_number:
+                            document
+                                .getElementById(
+                                    "mhNumber"
+                                )
+                                .value
+                                .trim(),
+
+
+                        aadhar_number:
+                            document
+                                .getElementById(
+                                    "aadhar"
+                                )
+                                .value
+                                .trim(),
+
+
+                        current_status:
+                            document
+                                .getElementById(
+                                    "status"
+                                )
+                                .value,
+
+
+                        remarks:
+                            document
+                                .getElementById(
+                                    "remarks"
+                                )
+                                .value
+                                .trim()
+
+                    };
+
+
+                    try {
+
+                        const response =
+                            await apiFetch(
+                                `${API_URL}/customers`,
+                                {
+
+                                    method:
+                                        "POST",
+
+                                    headers: {
+                                        "Content-Type":
+                                            "application/json"
+                                    },
+
+                                    body:
+                                        JSON.stringify(
+                                            customer
+                                        )
+
+                                }
+                            );
+
+
+                        if (!response) {
+                            return;
+                        }
+
+
+                        const result =
+                            await response.json();
+
+
+                        if (!response.ok) {
+
+                            throw new Error(
+                                result.error ||
+                                "Failed to add customer"
+                            );
+
+                        }
+
+
+                        const customerId =
+                            result.customer_id;
+
+
+                        /* UPLOAD DOCUMENTS */
+
+                        const files =
+                            document
+                                .getElementById(
+                                    "documents"
+                                )
+                                .files;
+
+
+                        for (
+                            let i = 0;
+                            i < files.length;
+                            i++
+                        ) {
+
+                            const formData =
+                                new FormData();
+
+
+                            formData.append(
+                                "document",
+                                files[i]
+                            );
+
+
+                            formData.append(
+                                "document_type",
+                                "Customer Document"
+                            );
+
+
+                            const uploadResponse =
+                                await apiFetch(
+                                    `${API_URL}/customers/${customerId}/documents`,
+                                    {
+
+                                        method:
+                                            "POST",
+
+                                        body:
+                                            formData
+
+                                    }
+                                );
+
+
+                            if (
+                                uploadResponse &&
+                                !uploadResponse.ok
+                            ) {
+
+                                console.error(
+                                    "Document upload failed:",
+                                    files[i].name
+                                );
+
+                            }
+
+                        }
+
+
+                        closeAddCustomer();
+
+
+                        await loadData();
+
+
+                        showToast(
+                            "Customer added successfully!"
+                        );
+
+
+                        openProfile(
+                            customerId
+                        );
+
+                    }
+                    catch (error) {
+
+                        console.error(
+                            error
+                        );
+
+
+                        errorBox.textContent =
+                            error.message;
+
+
+                        errorBox.style.display =
+                            "block";
+
+                    }
+
+                }
+            );
+
+
+        /* =====================================================
+           EDIT CUSTOMER
+        ===================================================== */
+
+        async function openEditCustomer(
+            id
+        ) {
+
+            try {
+
+                const response =
+                    await apiFetch(
+                        `${API_URL}/customers/${id}`
+                    );
+
+
+                if (!response) {
+                    return;
+                }
+
+
+                const customer =
                     await response.json();
 
 
                 if (!response.ok) {
 
                     throw new Error(
-                        data.message ||
-                        "Operation failed"
+                        customer.error ||
+                        "Could not load customer"
                     );
 
                 }
 
 
-                closeCustomerModal();
+                document.getElementById(
+                    "editId"
+                ).value =
+                    customer.customer_id;
 
 
-                showSuccess(
-                    id
-                        ? "Customer updated successfully!"
-                        : "Customer added successfully!"
-                );
+                document.getElementById(
+                    "editName"
+                ).value =
+                    customer.name;
 
 
-                await loadCustomers();
+                document.getElementById(
+                    "editMobile"
+                ).value =
+                    customer.mobile_number;
 
-                await loadDashboard();
 
-                await loadCities();
+                document.getElementById(
+                    "editAddress"
+                ).value =
+                    customer.address;
+
+
+                document.getElementById(
+                    "editCity"
+                ).value =
+                    customer.city || "";
+
+
+                document.getElementById(
+                    "editMhNumber"
+                ).value =
+                    customer.mh_number;
+
+
+                document.getElementById(
+                    "editAadhar"
+                ).value =
+                    customer.aadhar_number;
+
+
+                document.getElementById(
+                    "editStatus"
+                ).value =
+                    customer.current_status;
+
+
+                document.getElementById(
+                    "editRemarks"
+                ).value =
+                    customer.remarks || "";
+
+
+                document.getElementById(
+                    "editFormError"
+                ).style.display =
+                    "none";
+
+
+                document.getElementById(
+                    "editModal"
+                ).style.display =
+                    "block";
 
             }
             catch (error) {
 
                 console.error(
-                    "Save customer error:",
                     error
                 );
 
-                showError(
-                    error.message ||
-                    "Unable to save customer."
+
+                showToast(
+                    "Could not load customer"
                 );
 
             }
 
         }
-    );
 
 
-// ======================================================
-// EDIT CUSTOMER
-// ======================================================
+        function closeEditCustomer() {
 
-async function editCustomer(id) {
-
-    try {
-
-        const response =
-            await fetch(
-                `${API_URL}/customers/${id}`,
-                {
-                    headers: getHeaders()
-                }
-            );
-
-
-        if (response.status === 401) {
-
-            logout();
-
-            return;
+            document.getElementById(
+                "editModal"
+            ).style.display =
+                "none";
 
         }
 
 
-        const customer =
-            await response.json();
+        /* =====================================================
+           UPDATE CUSTOMER
+        ===================================================== */
 
+        document
+            .getElementById(
+                "editCustomerForm"
+            )
+            .addEventListener(
+                "submit",
+                async function(event) {
 
-        if (!response.ok) {
+                    event.preventDefault();
+
+
+                    const id =
+                        document.getElementById(
+                            "editId"
+                        ).value;
 
-            throw new Error(
-                customer.message ||
-                "Unable to load customer"
-            );
 
-        }
+                    const data = {
 
+                        name:
+                            document
+                                .getElementById(
+                                    "editName"
+                                )
+                                .value
+                                .trim(),
 
-        document.getElementById(
-            "modalTitle"
-        ).textContent =
-            "Edit Customer";
 
+                        mobile_number:
+                            document
+                                .getElementById(
+                                    "editMobile"
+                                )
+                                .value
+                                .trim(),
 
-        document.getElementById(
-            "customerId"
-        ).value =
-            customer.customer_id;
 
+                        address:
+                            document
+                                .getElementById(
+                                    "editAddress"
+                                )
+                                .value
+                                .trim(),
 
-        document.getElementById(
-            "name"
-        ).value =
-            customer.name || "";
 
+                        city:
+                            document
+                                .getElementById(
+                                    "editCity"
+                                )
+                                .value
+                                .trim(),
 
-        document.getElementById(
-            "mobile_number"
-        ).value =
-            customer.mobile_number || "";
 
+                        mh_number:
+                            document
+                                .getElementById(
+                                    "editMhNumber"
+                                )
+                                .value
+                                .trim(),
 
-        document.getElementById(
-            "address"
-        ).value =
-            customer.address || "";
 
+                        aadhar_number:
+                            document
+                                .getElementById(
+                                    "editAadhar"
+                                )
+                                .value
+                                .trim(),
 
-        document.getElementById(
-            "city"
-        ).value =
-            customer.city || "";
 
+                        current_status:
+                            document
+                                .getElementById(
+                                    "editStatus"
+                                )
+                                .value,
 
-        document.getElementById(
-            "mh_number"
-        ).value =
-            customer.mh_number || "";
 
+                        remarks:
+                            document
+                                .getElementById(
+                                    "editRemarks"
+                                )
+                                .value
+                                .trim()
 
-        document.getElementById(
-            "aadhar_number"
-        ).value =
-            customer.aadhar_number || "";
+                    };
 
 
-        document.getElementById(
-            "current_status"
-        ).value =
-            customer.current_status || "NEW";
+                    try {
 
+                        const response =
+                            await apiFetch(
+                                `${API_URL}/customers/${id}`,
+                                {
 
-        document.getElementById(
-            "remarks"
-        ).value =
-            customer.remarks || "";
+                                    method:
+                                        "PUT",
 
+                                    headers: {
+                                        "Content-Type":
+                                            "application/json"
+                                    },
 
-        document.getElementById(
-            "customerModal"
-        ).style.display =
-            "flex";
+                                    body:
+                                        JSON.stringify(
+                                            data
+                                        )
 
-    }
-    catch (error) {
+                                }
+                            );
 
-        console.error(
-            "Edit error:",
-            error
-        );
 
-        showError(
-            error.message ||
-            "Unable to load customer."
-        );
+                        if (!response) {
+                            return;
+                        }
 
-    }
 
-}
+                        const result =
+                            await response.json();
 
 
-// ======================================================
-// DELETE CUSTOMER
-// ======================================================
+                        if (!response.ok) {
 
-async function deleteCustomer(id) {
+                            throw new Error(
+                                result.error ||
+                                "Update failed"
+                            );
 
-    const confirmed =
-        confirm(
-            "Are you sure you want to delete this customer?"
-        );
+                        }
 
 
-    if (!confirmed) {
+                        closeEditCustomer();
 
-        return;
 
-    }
+                        await loadData();
 
 
-    try {
+                        showToast(
+                            "Customer updated successfully"
+                        );
 
-        const response =
-            await fetch(
-                `${API_URL}/customers/${id}`,
-                {
-                    method: "DELETE",
 
-                    headers: getHeaders()
-                }
-            );
+                        openProfile(
+                            id
+                        );
 
-
-        if (response.status === 401) {
-
-            logout();
-
-            return;
-
-        }
-
-
-        const data =
-            await response.json();
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                data.message ||
-                "Delete failed"
-            );
-
-        }
-
-
-        showSuccess(
-            "Customer deleted successfully!"
-        );
-
-
-        await loadCustomers();
-
-        await loadDashboard();
-
-        await loadCities();
-
-    }
-    catch (error) {
-
-        console.error(
-            "Delete error:",
-            error
-        );
-
-        showError(
-            error.message ||
-            "Unable to delete customer."
-        );
-
-    }
-
-}
-
-
-// ======================================================
-// VIEW CUSTOMER
-// ======================================================
-
-async function viewCustomer(id) {
-
-    const modal =
-        document.getElementById(
-            "profileModal"
-        );
-
-
-    const details =
-        document.getElementById(
-            "profileDetails"
-        );
-
-
-    const documents =
-        document.getElementById(
-            "documentsList"
-        );
-
-
-    details.innerHTML =
-        "Loading...";
-
-
-    documents.innerHTML =
-        "Loading...";
-
-
-    modal.style.display =
-        "flex";
-
-
-    try {
-
-        const response =
-            await fetch(
-                `${API_URL}/customers/${id}`,
-                {
-                    headers: getHeaders()
-                }
-            );
-
-
-        if (response.status === 401) {
-
-            logout();
-
-            return;
-
-        }
-
-
-        const customer =
-            await response.json();
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                customer.message ||
-                "Unable to load profile"
-            );
-
-        }
-
-
-        // ==========================================
-        // CUSTOMER DETAILS
-        // ==========================================
-
-        let maskedAadhar =
-            customer.aadhar_number || "";
-
-
-        if (maskedAadhar.length >= 4) {
-
-            maskedAadhar =
-                "*".repeat(
-                    Math.max(
-                        0,
-                        maskedAadhar.length - 4
-                    )
-                ) +
-                maskedAadhar.slice(-4);
-
-        }
-
-
-        details.innerHTML = `
-
-            <div class="profile-row">
-
-                <div class="profile-label">
-                    Customer ID
-                </div>
-
-                <div>
-                    ${customer.customer_id}
-                </div>
-
-            </div>
-
-
-            <div class="profile-row">
-
-                <div class="profile-label">
-                    Name
-                </div>
-
-                <div>
-                    ${escapeHtml(customer.name)}
-                </div>
-
-            </div>
-
-
-            <div class="profile-row">
-
-                <div class="profile-label">
-                    Mobile Number
-                </div>
-
-                <div>
-                    ${escapeHtml(
-                        customer.mobile_number
-                    )}
-                </div>
-
-            </div>
-
-
-            <div class="profile-row">
-
-                <div class="profile-label">
-                    Address
-                </div>
-
-                <div>
-                    ${escapeHtml(
-                        customer.address
-                    )}
-                </div>
-
-            </div>
-
-
-            <div class="profile-row">
-
-                <div class="profile-label">
-                    City
-                </div>
-
-                <div>
-                    ${escapeHtml(
-                        customer.city
-                    )}
-                </div>
-
-            </div>
-
-
-            <div class="profile-row">
-
-                <div class="profile-label">
-                    MH Number
-                </div>
-
-                <div>
-                    ${escapeHtml(
-                        customer.mh_number
-                    )}
-                </div>
-
-            </div>
-
-
-            <div class="profile-row">
-
-                <div class="profile-label">
-                    Aadhaar Number
-                </div>
-
-                <div>
-                    ${escapeHtml(
-                        maskedAadhar
-                    )}
-                </div>
-
-            </div>
-
-
-            <div class="profile-row">
-
-                <div class="profile-label">
-                    Status
-                </div>
-
-                <div>
-
-                    <span
-                        class="status ${customer.current_status}"
-                    >
-                        ${customer.current_status}
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="profile-row">
-
-                <div class="profile-label">
-                    Remarks
-                </div>
-
-                <div>
-                    ${escapeHtml(
-                        customer.remarks || "-"
-                    )}
-                </div>
-
-            </div>
-
-
-            <div class="profile-row">
-
-                <div class="profile-label">
-                    Created
-                </div>
-
-                <div>
-                    ${
-                        customer.created_at
-                        ? new Date(
-                            customer.created_at
-                          ).toLocaleString()
-                        : "-"
                     }
-                </div>
+                    catch (error) {
 
-            </div>
-
-        `;
-
-
-        // ==========================================
-        // DOCUMENTS
-        // ==========================================
-
-        await loadDocuments(id);
-
-    }
-    catch (error) {
-
-        console.error(
-            "Profile error:",
-            error
-        );
+                        console.error(
+                            error
+                        );
 
 
-        details.innerHTML =
-            "Unable to load customer profile.";
+                        document.getElementById(
+                            "editFormError"
+                        ).textContent =
+                            error.message;
 
 
-        documents.innerHTML =
-            "";
+                        document.getElementById(
+                            "editFormError"
+                        ).style.display =
+                            "block";
 
-    }
+                    }
 
-}
-
-
-// ======================================================
-// LOAD DOCUMENTS
-// ======================================================
-
-async function loadDocuments(customerId) {
-
-    const container =
-        document.getElementById(
-            "documentsList"
-        );
-
-
-    try {
-
-        const response =
-            await fetch(
-                `${API_URL}/customers/${customerId}/documents`,
-                {
-                    headers: getHeaders()
                 }
             );
 
 
-        if (response.status === 401) {
+        /* =====================================================
+           STATUS
+        ===================================================== */
 
-            logout();
-
-            return;
-
-        }
-
-
-        const docs =
-            await response.json();
-
-
-        if (
-            !docs ||
-            docs.length === 0
+        function openStatusModal(
+            id,
+            currentStatus
         ) {
 
-            container.innerHTML =
-                "<p>No documents uploaded.</p>";
+            document.getElementById(
+                "statusCustomerId"
+            ).value =
+                id;
 
-            return;
+
+            document.getElementById(
+                "newStatus"
+            ).value =
+                currentStatus;
+
+
+            document.getElementById(
+                "statusRemarks"
+            ).value =
+                "";
+
+
+            document.getElementById(
+                "statusModal"
+            ).style.display =
+                "block";
 
         }
 
 
-        container.innerHTML = "";
+        function closeStatusModal() {
+
+            document.getElementById(
+                "statusModal"
+            ).style.display =
+                "none";
+
+        }
 
 
-        docs.forEach(doc => {
+        async function saveStatus() {
+
+            const id =
+                document.getElementById(
+                    "statusCustomerId"
+                ).value;
 
 
-            // IMPORTANT:
-            // Use Render backend URL,
-            // NOT localhost.
-
-            const fileUrl =
-                BACKEND_URL +
-                doc.file_path;
+            const status =
+                document.getElementById(
+                    "newStatus"
+                ).value;
 
 
-            const item =
-                document.createElement(
-                    "div"
+            const remarks =
+                document.getElementById(
+                    "statusRemarks"
+                ).value
+                .trim();
+
+
+            try {
+
+                const response =
+                    await apiFetch(
+                        `${API_URL}/customers/${id}/status`,
+                        {
+
+                            method:
+                                "PUT",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body:
+                                JSON.stringify({
+
+                                    status:
+                                        status,
+
+                                    remarks:
+                                        remarks
+
+                                })
+
+                        }
+                    );
+
+
+                if (!response) {
+                    return;
+                }
+
+
+                const result =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        result.error ||
+                        "Status update failed"
+                    );
+
+                }
+
+
+                closeStatusModal();
+
+
+                await loadData();
+
+
+                showToast(
+                    "Status updated successfully"
                 );
 
 
-            item.className =
-                "document-item";
+                openProfile(
+                    id
+                );
+
+            }
+            catch (error) {
+
+                console.error(
+                    error
+                );
 
 
-            item.innerHTML = `
+                showToast(
+                    error.message
+                );
 
-                <span>
-                    ${escapeHtml(
-                        doc.document_name
-                    )}
-                </span>
+            }
 
-                <a
-                    href="${fileUrl}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    View
-                </a>
-
-            `;
+        }
 
 
-            container.appendChild(item);
+        /* =====================================================
+           DELETE CUSTOMER
+        ===================================================== */
 
-        });
+        async function deleteCustomer(
+            id
+        ) {
 
-    }
-    catch (error) {
+            const customer =
+                customers.find(
+                    c =>
+                        c.customer_id ==
+                        id
+                );
 
-        console.error(
-            "Documents error:",
-            error
+
+            if (!customer) {
+                return;
+            }
+
+
+            const confirmed =
+                confirm(
+                    `Are you sure you want to delete ${customer.name}?`
+                );
+
+
+            if (!confirmed) {
+                return;
+            }
+
+
+            try {
+
+                const response =
+                    await apiFetch(
+                        `${API_URL}/customers/${id}`,
+                        {
+
+                            method:
+                                "DELETE"
+
+                        }
+                    );
+
+
+                if (!response) {
+                    return;
+                }
+
+
+                const result =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        result.error ||
+                        "Delete failed"
+                    );
+
+                }
+
+
+                await loadData();
+
+
+                showToast(
+                    "Customer deleted successfully"
+                );
+
+
+                showPage(
+                    "customers"
+                );
+
+            }
+            catch (error) {
+
+                console.error(
+                    error
+                );
+
+
+                showToast(
+                    error.message
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           UPLOAD DOCUMENT
+        ===================================================== */
+
+        async function uploadDocument() {
+
+            if (!currentCustomerId) {
+
+                showToast(
+                    "Customer not selected"
+                );
+
+                return;
+
+            }
+
+
+            const input =
+                document.getElementById(
+                    "profileDocument"
+                );
+
+
+            if (
+                !input.files ||
+                input.files.length === 0
+            ) {
+
+                showToast(
+                    "Please select a document"
+                );
+
+                return;
+
+            }
+
+
+            const file =
+                input.files[0];
+
+
+            try {
+
+                const formData =
+                    new FormData();
+
+
+                formData.append(
+                    "document",
+                    file
+                );
+
+
+                formData.append(
+                    "document_type",
+                    "Customer Document"
+                );
+
+
+                const response =
+                    await apiFetch(
+                        `${API_URL}/customers/${currentCustomerId}/documents`,
+                        {
+
+                            method:
+                                "POST",
+
+                            body:
+                                formData
+
+                        }
+                    );
+
+
+                if (!response) {
+                    return;
+                }
+
+
+                const result =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        result.error ||
+                        "Upload failed"
+                    );
+
+                }
+
+
+                showToast(
+                    "Document uploaded successfully"
+                );
+
+
+                openProfile(
+                    currentCustomerId
+                );
+
+            }
+            catch (error) {
+
+                console.error(
+                    error
+                );
+
+
+                showToast(
+                    error.message
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           DELETE DOCUMENT
+        ===================================================== */
+
+        async function deleteDocument(
+            documentId
+        ) {
+
+            const confirmed =
+                confirm(
+                    "Delete this document?"
+                );
+
+
+            if (!confirmed) {
+                return;
+            }
+
+
+            try {
+
+                const response =
+                    await apiFetch(
+                        `${API_URL}/documents/${documentId}`,
+                        {
+
+                            method:
+                                "DELETE"
+
+                        }
+                    );
+
+
+                if (!response) {
+                    return;
+                }
+
+
+                const result =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        result.error ||
+                        "Document deletion failed"
+                    );
+
+                }
+
+
+                showToast(
+                    "Document deleted"
+                );
+
+
+                openProfile(
+                    currentCustomerId
+                );
+
+            }
+            catch (error) {
+
+                console.error(
+                    error
+                );
+
+
+                showToast(
+                    error.message
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           PAGE NAVIGATION
+        ===================================================== */
+
+        function showPage(
+            pageName
+        ) {
+
+            document
+                .querySelectorAll(
+                    ".page"
+                )
+                .forEach(
+                    page => {
+
+                        page.classList.remove(
+                            "active-page"
+                        );
+
+                    }
+                );
+
+
+            const page =
+                document.getElementById(
+                    pageName
+                );
+
+
+            if (page) {
+
+                page.classList.add(
+                    "active-page"
+                );
+
+            }
+
+
+            document
+                .querySelectorAll(
+                    ".nav-btn"
+                )
+                .forEach(
+                    btn => {
+
+                        btn.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+            if (
+                pageName ===
+                "dashboard"
+            ) {
+
+                document
+                    .querySelectorAll(
+                        ".nav-btn"
+                    )[0]
+                    .classList.add(
+                        "active"
+                    );
+
+            }
+
+
+            if (
+                pageName ===
+                "customers"
+            ) {
+
+                document
+                    .querySelectorAll(
+                        ".nav-btn"
+                    )[1]
+                    .classList.add(
+                        "active"
+                    );
+
+            }
+
+
+            if (
+                pageName ===
+                "reports"
+            ) {
+
+                document
+                    .querySelectorAll(
+                        ".nav-btn"
+                    )[2]
+                    .classList.add(
+                        "active"
+                    );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           CLOSE MODALS
+        ===================================================== */
+
+        window.addEventListener(
+            "click",
+            function(event) {
+
+                const customerModal =
+                    document.getElementById(
+                        "customerModal"
+                    );
+
+
+                const editModal =
+                    document.getElementById(
+                        "editModal"
+                    );
+
+
+                const statusModal =
+                    document.getElementById(
+                        "statusModal"
+                    );
+
+
+                if (
+                    event.target ===
+                    customerModal
+                ) {
+
+                    closeAddCustomer();
+
+                }
+
+
+                if (
+                    event.target ===
+                    editModal
+                ) {
+
+                    closeEditCustomer();
+
+                }
+
+
+                if (
+                    event.target ===
+                    statusModal
+                ) {
+
+                    closeStatusModal();
+
+                }
+
+            }
         );
 
 
-        container.innerHTML =
-            "<p>Unable to load documents.</p>";
+        /* =====================================================
+           START APPLICATION
+        ===================================================== */
 
-    }
+        loadData();
 
-}
-
-
-// ======================================================
-// CLOSE PROFILE MODAL
-// ======================================================
-
-function closeProfileModal() {
-
-    document.getElementById(
-        "profileModal"
-    ).style.display =
-        "none";
-
-}
-
-
-// ======================================================
-// CLOSE MODALS WHEN CLICKING OUTSIDE
-// ======================================================
-
-window.addEventListener(
-    "click",
-    function(event) {
-
-        const customerModal =
-            document.getElementById(
-                "customerModal"
-            );
-
-
-        const profileModal =
-            document.getElementById(
-                "profileModal"
-            );
-
-
-        if (
-            event.target === customerModal
-        ) {
-
-            closeCustomerModal();
-
-        }
-
-
-        if (
-            event.target === profileModal
-        ) {
-
-            closeProfileModal();
-
-        }
-
-    }
-);
-
-
-// ======================================================
-// INITIAL LOAD
-// ======================================================
-
-async function initialize() {
-
-    await loadDashboard();
-
-    await loadCities();
-
-    await loadCustomers();
-
-}
-
-
-// Start application
-initialize();
-
-</script>
-
+    </script>
 
 </body>
 
